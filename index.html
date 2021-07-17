@@ -10,22 +10,28 @@
 </head>
 <body>
 
-<!-- HEADER 100% Width Title for website and brief explanation-->
+<div id="header" class="md:container md:mx-auto">
+    <h1 class="font-serif ...">Inspiration Generator</h1>
+    <h3 class="font-serif ...">NASA is flying a helicopter on Mars. Olympians are shattering athletic records on Earth. What's your excuse?</h3>
+    <p class="font-serif ...">Take a hit of inspiration by searching for a content theme and clicking on the button below.</p>
+</div>
 
-<!-- Main container  -->
-  <!-- IMAGE CONTAINER CENTERED @ 75% width and Quote overlayed 2 APIs-->
-  <!-- USER INPUT SECTION: 
-    
-    searchEl "Text" dropdown/text/autocomplete/etc. search for image by keyword"
-    
-    hitBtn "TAKE A HIT" basically refreshes the image/quote based on selected criteria. if no criteria, then just random ALL
-    
-    saveBtn "Take whatever criteria that is current selected and store it into obj. BONUS points: capture HTML EL for quick reload"
-    
-    prevSearch "Container with something to show previous searches; BTN to load and run prev search"
+<div id="main" class="md:container md:mx-auto">
+    <!-- <img id="flickr-image" class="object-none object-center w-24 h-24 ..." src="..."> -->
+    <div id="flickr-image" class="container mx-auto px-20">
+        <div id="quote-text" class="decoration-clone md:decoration-slice ...">
+        </div>
+    </div>
+</div>
 
-    <!-- End Main Container -->
+<div id="user-input" class="md:container md:mx-auto">
+    <input id="image-search" placeholder="Enter Image Theme">
+    <button id="submit-search">Take a hit!</button>
+    <button id=save-search>Save search</button>
+</div>
 
+<div id="saved-searches" class="md:container md:mx-auto"></div>
+    
 <!-- JS SCRIPT REFERENCES -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./assets/js/script.js"></script>
