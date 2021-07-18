@@ -1,4 +1,4 @@
-header {
+#header {
     color: red;
 }
 
@@ -10,9 +10,9 @@ header {
 
 p {
     text-align: center;
-    font-size: 100px;
     font-family: sans-serif;
 }
+
 .center {
     position: absolute;
     top: 50%;
