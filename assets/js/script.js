@@ -1,6 +1,8 @@
 var takeAHit = $('#submit-search');
 var quoteText = $('#quote-text');
 var image = $('#image');
+var dateInputEl = $('#date-search');
+var nasaApiUrl= "https://api.nasa.gov/planetary/apod?api_key=v0cvQ8WnjhwP60Zgk9XAQILRGEfLKEUzb48uPaqh&date=2021-06-25";
 var imageURL= "https://api.imgflip.com/get_memes";
 var saveBtn = $('#save-search');
 
@@ -9,17 +11,14 @@ var savedAuthor
 var savedUrl
 
 function getImage(){
-    fetch(imageURL)
+    fetch(nasaApiUrl)
     .then(res => res.json())
     .then(data =>{
-        console.log(data);
-        
+    image.attr('src', data.url);
         var i=Math.floor(Math.random() * data.data.memes.length);
         savedUrl = data.data.memes[i].url;
         image.attr('src', savedUrl);
         console.log(data.data.memes[i]);
-
-        
     })
 };
 

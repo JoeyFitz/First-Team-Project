@@ -40,3 +40,7 @@ p {
     height: 250px;
     border-radius: 250px;
   }
+
+  .container {
+      width: 50%;
+  }
