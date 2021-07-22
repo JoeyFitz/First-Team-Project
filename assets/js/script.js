@@ -1,52 +1,82 @@
-var takeAHit = $('#submit-search');
-var quoteText = $('#quote-text');
-var image = $('#image');
+// HTML Content Elements
+var quoteTextEl = $('#quote-text');
+var imageEl = $('#image');
 var dateInputEl = $('#date-search');
-var nasaApiUrl= "https://api.nasa.gov/planetary/apod?api_key=v0cvQ8WnjhwP60Zgk9XAQILRGEfLKEUzb48uPaqh&date=2021-06-25";
-var imageURL= "https://api.imgflip.com/get_memes";
-var saveBtn = $('#save-search');
 
-var savedQuote
-var savedAuthor 
-var savedUrl
+// Button Elements
+var saveImageBtn = $('#save-image');
+var saveQuoteBtn = $('#save-quote');
+var submitNasaBtn = $('#submit-nasa');
+var submitMemeBtn = $('#submit-meme');
+var submitQuoteBtn =$('#submit-quote');
 
-function getImage(){
-    fetch(nasaApiUrl)
+// API URLs
+var nasaApiUrl= "https://api.nasa.gov/planetary/apod?api_key=v0cvQ8WnjhwP60Zgk9XAQILRGEfLKEUzb48uPaqh&date=";
+var memeApiUrl= "https://api.imgflip.com/get_memes";
+var quotesApiUrl = "https://type.fit/api/quotes";
+
+// Get Local storage arrays OR empty array
+var arrSavedImages = JSON.parse(localStorage.getItem('arrImages')) || [];
+var arrSavedQuotes = JSON.parse(localStorage.getItem('arrQuotes')) || [];
+
+//Click events
+submitNasaBtn.on('click', getNasaImage);
+submitMemeBtn.on('click', getMemeImage);
+submitQuoteBtn.on('click', getQuote);
+saveImageBtn.on('click', saveImage);
+saveQuoteBtn.on('click', saveQuote);
+
+//Global variables for storage
+var imageUrl;
+var quoteStr;
+
+//Get Image Functions
+function getNasaImage(){
+    imageUrl = nasaApiUrl + dateInputEl[0].value;
+    console.log(imageUrl);
+    fetch(imageUrl)
     .then(res => res.json())
-    .then(data =>{
-    image.attr('src', data.url);
-        var i=Math.floor(Math.random() * data.data.memes.length);
-        savedUrl = data.data.memes[i].url;
-        image.attr('src', savedUrl);
-        console.log(data.data.memes[i]);
+        .then(data =>{
+            imageUrl = data.url;
+            console.log(imageUrl);
+            imageEl.attr('src', data.url);
     })
 };
 
-var quotes = 'https://type.fit/api/quotes'
+function getMemeImage(){
+    fetch(memeApiUrl)
+    .then(res => res.json())
+    .then(data =>{
+    imageEl.attr('src', data.url);
+        var i=Math.floor(Math.random() * data.data.memes.length);
+        imageUrl = data.data.memes[i].url;
+        imageEl.attr('src', imageUrl);
+    })
+};
+
+//Get Quote
 function getQuote(){
-    getImage();
-    fetch(quotes)
+    fetch(quotesApiUrl)
     .then(res => res.json())
     .then(data =>{
         var i=Math.floor(Math.random() * data.length);
-        console.log(data);
-        savedAuthor = (data[i].author);
-        savedQuote = (data[i].text);
-        quoteText.html((savedQuote +"--"+ savedAuthor));
-        console.log(savedQuote);
-        console.log(savedAuthor);
+        quoteStr = (data[i].text) + "--" + (data[i].author);
+        quoteTextEl.html(quoteStr);
     })
 };
-takeAHit.on('click', getQuote);
-saveBtn.on('click', saveStorage);
 
-
-function saveStorage(){
-
-    localStorage.setItem('imageUrl', savedUrl);
-    localStorage.setItem('quote', savedQuote);
-    localStorage.setItem('author', savedAuthor);
-    console.log('in saved storage')
-
+//Save functions
+function saveImage(){
+    
+    arrSavedImages.push(imageUrl);
+    localStorage.setItem('arrImages', JSON.stringify(arrSavedImages));
 }
 
+function saveQuote(){
+    console.log(arrSavedQuotes);
+    arrSavedQuotes.push(quoteStr);
+    localStorage.setItem('arrQuotes', JSON.stringify(arrSavedQuotes));
+}
+
+// Load Save Images
+// Load Saved Quotes
