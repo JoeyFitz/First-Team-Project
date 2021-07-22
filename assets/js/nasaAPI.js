@@ -1,22 +1,23 @@
-var takeAHit = $('#submit-search');
+var takeAHit = $('#submit-date');
 var quoteText = $('#quote-text');
 var image = $('#image');
 var dateInputEl = $('#date-search');
-var nasaApiUrl= "https://api.nasa.gov/planetary/apod?api_key=v0cvQ8WnjhwP60Zgk9XAQILRGEfLKEUzb48uPaqh&date=2021-06-25";
+var nasaApiUrl= "https://api.nasa.gov/planetary/apod?api_key=v0cvQ8WnjhwP60Zgk9XAQILRGEfLKEUzb48uPaqh&date=";
+var quoteUrl = 'https://type.fit/api/quotes'
 
 function getImage(){
-    fetch(nasaApiUrl)
+    var imageUrl = nasaApiUrl + dateInputEl[0].value;
+    console.log(imageUrl);
+    fetch(imageUrl)
     .then(res => res.json())
     .then(data =>{
-        console.log(data.url);
+        console.log(data);
     image.attr('src', data.url);
     })
 };
 
-var quotes = 'https://type.fit/api/quotes'
 function getQuote(){
-    getImage();
-    fetch(quotes)
+    fetch(quoteUrl)
     .then(res => res.json())
     .then(data =>{
         var i=Math.floor(Math.random() * data.length);
@@ -24,5 +25,8 @@ function getQuote(){
         quoteText.html((data[i].text) +"--"+ (data[i].author))
     })
 };
-takeAHit.on('click', getQuote);
+takeAHit.on('click', function(){
+    getImage();
+    getQuote();
+});
 
