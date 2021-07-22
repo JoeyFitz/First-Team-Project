@@ -2,6 +2,7 @@
 var quoteTextEl = $('#quote-text');
 var imageEl = $('#image');
 var dateInputEl = $('#date-search');
+var videoFrameEl = $('#videoFrame');
 
 // Button Elements
 var saveImageBtn = $('#save-image');
@@ -38,8 +39,11 @@ function getNasaImage(){
     .then(res => res.json())
         .then(data =>{
             imageUrl = data.url;
-            console.log(imageUrl);
-            imageEl.attr('src', data.url);
+            if (imageUrl.includes('youtube')) {
+                videoFrameEl.attr('src', data.url )
+            } else {
+                imageEl.attr('src', data.url);
+            }
     })
 };
 
