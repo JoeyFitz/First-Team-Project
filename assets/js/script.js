@@ -121,6 +121,13 @@ function loadQuotes(){
     }
 }
 
+
+//Dark mode toggle
+function darkModeToggle() {
+    var element = document.body;
+    element.classList.toggle("dark-mode");
+}
+
 //Make floating text element
 
 // dragElement(document.getElementById("mydiv"));

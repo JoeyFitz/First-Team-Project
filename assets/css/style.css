@@ -1,6 +1,14 @@
-#header {
-    color: red;
-}
+body {
+    padding: 25px;
+    background-color: white;
+    color: black;
+    font-size: 25px;
+  }
+  
+  .dark-mode {
+    background-color: #1F1B24;
+    color: white;
+  }
 
 .card {
     position: relative;
@@ -48,6 +56,7 @@ p {
   #quote-text {
     font-family: 'Rock Salt', cursive;
   }
+
 
   /* floating text css elements */
 /* 
