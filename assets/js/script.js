@@ -3,6 +3,8 @@ var quoteTextEl = $('#quote-text');
 var imageEl = $('#image');
 var dateInputEl = $('#date-search');
 var videoFrameEl = $('#videoFrame');
+var savedImagesEl =$('#saved-images');
+var savedQuotesEl =$('#saved-quotes');
 
 // Button Elements
 var saveImageBtn = $('#save-image');
@@ -19,6 +21,9 @@ var quotesApiUrl = "https://type.fit/api/quotes";
 // Get Local storage arrays OR empty array
 var arrSavedImages = JSON.parse(localStorage.getItem('arrImages')) || [];
 var arrSavedQuotes = JSON.parse(localStorage.getItem('arrQuotes')) || [];
+
+loadQuotes();
+loadImages();
 
 //Click events
 submitNasaBtn.on('click', getNasaImage);
@@ -47,7 +52,7 @@ function getNasaImage(){
                 
             } else {
                 imageEl.attr('src', data.url);
-                imageEl.attr('dislay', 'block');
+                imageEl.attr('display', 'block');
                 videoFrameEl.attr('src', '')
                 videoFrameEl.attr('display', 'none')
             }
@@ -89,8 +94,32 @@ function saveQuote(){
     localStorage.setItem('arrQuotes', JSON.stringify(arrSavedQuotes));
 }
 // Load Save Images
+function loadImages(){
+    savedImagesEl.empty();
+    for (i=0; i < arrSavedImages.length; i++){
+        var imageCard = $("<div>");
+        var imageThumb = $("<img>");
+        console.log(arrSavedImages[i]);
+        imageThumb.attr('src', arrSavedImages[i]);
+        imageCard.append(imageThumb);
+        savedImagesEl.append(imageCard);
+    }
+}
+
 
 // Load Saved Quotes
+function loadQuotes(){
+    savedQuotesEl.empty();
+    for (i=0; i < arrSavedQuotes.length; i++){
+        var quoteCard = $('<div>');
+        var quoteText = $('<p>');
+        console.log(arrSavedQuotes[i]);
+        quoteText.text(arrSavedQuotes[i]);           
+        quoteCard.append(quoteText);
+
+        savedQuotesEl.append(quoteCard);
+    }
+}
 
 //Make floating text element
 
