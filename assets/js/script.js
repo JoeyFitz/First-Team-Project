@@ -48,7 +48,6 @@ function getNasaImage(){
         .then(data =>{
             imageUrl = data.url;
             setImage(imageUrl);
-
     })
 };
 
@@ -147,3 +146,10 @@ function loadImages(){
         savedImagesEl.append(imageCard); // append container to saved-images section
     }
 }
+
+//Dark mode toggle
+function darkModeToggle() {
+    var element = document.body;
+    element.classList.toggle("dark-mode");
+}
+
