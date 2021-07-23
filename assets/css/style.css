@@ -45,6 +45,10 @@ p {
       width: 50%;
   }
 
+  #quote-text {
+    font-family: 'Rock Salt', cursive;
+  }
+
   /* floating text css elements */
 /* 
   #mydiv {
@@ -61,3 +65,4 @@ p {
     z-index: 10;
     color: black;
   } */
+
