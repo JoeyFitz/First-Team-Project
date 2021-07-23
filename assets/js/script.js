@@ -40,9 +40,11 @@ function getNasaImage(){
         .then(data =>{
             imageUrl = data.url;
             if (imageUrl.includes('youtube')) {
-                videoFrameEl.attr('src', data.url )
+                videoFrameEl.attr('src', data.url)
+                imageEl.attr('src', '');
             } else {
                 imageEl.attr('src', data.url);
+                videoFrameEl.attr('src', '')
             }
     })
 };
@@ -81,6 +83,5 @@ function saveQuote(){
     arrSavedQuotes.push(quoteStr);
     localStorage.setItem('arrQuotes', JSON.stringify(arrSavedQuotes));
 }
-
 // Load Save Images
 // Load Saved Quotes
