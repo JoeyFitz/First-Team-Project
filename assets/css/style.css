@@ -44,3 +44,7 @@ p {
   .container {
       width: 50%;
   }
+
+  #quote-text {
+    font-family: 'Rock Salt', cursive;
+  }
