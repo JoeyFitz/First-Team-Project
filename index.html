@@ -13,24 +13,24 @@
 </head>
 <body>
     <nav>
-        <div id="user-input" class="p-2 text-gray-400 bg-gray-800 items-center">
+        <div id="user-input" class="p-2 text-gray-400 bg-gray-800">
             <label for="Date">NASA Pic of the Day:</label>
             <input id="date-search" type="date" placeholder="YYYY-MM-DD">
             <button id="submit-nasa" class="ml-4 inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg">Get NASA Pic</button>
             <button id="submit-meme" class="ml-4 inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg">Get Meme Pic</button>
             <button id="submit-quote" class="ml-4 inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg">Get Quote</button>
+            <button onclick="darkModeToggle()">Toggle dark mode</button>
         </div>
 
     </nav>
     <section class="text-gray-400 bg-gray-900 body-font">
-        <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
-          <img id="image" class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero" >
+        <div class="container  mx-auto flex px-5 py-10 items-center justify-center flex-col">
+          <img id="image" class="lg:w-5/6 md:w-5/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero" >
           <div id="videoContainer">
             <iframe id='videoFrame' width="450" height="283" src="" frameborder="0" allowfullscreen wmode="Opaque"></iframe>
           </div>
           <div class="text-center lg:w-2/3 w-full">
-            <h1 id="quote-text" class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">Microdosing synth tattooed vexillologist</h1>
-            <p class="leading-relaxed mb-8">Meggings kinfolk echo park stumptown DIY, kale chips beard jianbing tousled. Chambray dreamcatcher trust fund, kitsch vice godard disrupt ramps hexagon mustache umami snackwave tilde chillwave ugh. Pour-over meditation PBR&amp;B pickled ennui celiac mlkshk freegan photo booth af fingerstache pitchfork.</p>
+            <h1 id="quote-text" class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white"></h1>
             <div class="flex justify-center">
               <button class="inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg" id=save-image>Save Image</button>
               <button class="ml-4 inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg" id="save-quote">Save Quote</button>

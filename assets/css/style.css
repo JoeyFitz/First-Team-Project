@@ -1,3 +1,4 @@
+
 body {
     padding: 25px;
     background-color: white;
@@ -38,7 +39,13 @@ p {
     text-decoration: none;
     font-size: 16px;
   }
-  
+  #quote-text {
+    font-family: 'Rock Salt', cursive;
+  }
+
+  body{
+    padding: 0px;
+  }
   /* #img-box{
       width: 100vw;
   } */
@@ -49,16 +56,12 @@ p {
     border-radius: 250px;
   } */
 
-  /* .container {
-      width: 50%;
 
-  } */
 
-  }
+ 
 
-  #quote-text {
-    font-family: 'Rock Salt', cursive;
-  }
+
+
 
 
   /* floating text css elements */
