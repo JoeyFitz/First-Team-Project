@@ -43,14 +43,17 @@ p {
       width: 100vw;
   } */
 
-  button{
+  /* button{
     width: 250px;
     height: 250px;
     border-radius: 250px;
-  }
+  } */
 
-  .container {
+  /* .container {
       width: 50%;
+
+  } */
+
   }
 
   #quote-text {
@@ -74,4 +77,5 @@ p {
     z-index: 10;
     color: black;
   } */
+
 

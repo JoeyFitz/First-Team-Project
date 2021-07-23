@@ -45,6 +45,7 @@ function getNasaImage(){
         .then(data =>{
             imageUrl = data.url;
             if (imageUrl.includes('youtube')) {
+
                 videoFrameEl.attr('src', data.url)
                 videoFrameEl.attr('display', 'block');
                 imageEl.attr('src', '');
