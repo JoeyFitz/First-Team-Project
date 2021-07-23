@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
     <title>INSPIRATION STATION</title>
@@ -42,7 +45,13 @@
     <p class="font-serif ...">Take a hit of inspiration by searching for a content theme and clicking on the button below.</p>
 </div> -->
 
+
 <!-- <div id="main" class="md:container md:mx-auto">
+
+<button onclick="darkModeToggle()">Toggle dark mode</button>
+
+<div id="main" class="md:container md:mx-auto">
+
     <div id="main" class="container mx-auto px-20">
         <img id="image" class="object-none object-center">
         <div id="videoContainer">
@@ -50,7 +59,7 @@
           </div>
         <div id="quote-text" class="decoration-clone md:decoration-slice">
         </div>
-        <button id=save-image>Save Image</button>
+        <button id='save-image'>Save Image</button>
         <button id="save-quote">Save Quote</button>
     </div>
 </div> -->
@@ -63,7 +72,14 @@
     <button id="submit-quote" class="inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg">Get Quote</button>
 </div> -->
 
-<div id="saved-searches" class="md:container md:mx-auto"></div>
+<div id="saved-searches" class="grid-cols-2 md:container md:mx-auto">
+    <div id="saved-images">
+
+    </div>
+    <div id="saved-quotes">
+        
+    </div>
+</div>
     
 <!-- JS SCRIPT REFERENCES -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
