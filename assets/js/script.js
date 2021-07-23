@@ -67,16 +67,15 @@ function setImage(imgUrl){
     console.log('ImgUrl: ' + imgUrl);
     console.log(imageEl.attr("value"));
     if (imgUrl.includes('youtube')) {
+        
         videoFrameEl.attr('src', imgUrl)
-        videoFrameEl.attr('display', 'block');
-        imageEl.attr('src', '');
-        imageEl.attr('display','none');
+        videoFrameEl.removeClass('hidden');
+        imageEl.addClass('hidden');
         
     } else {
         imageEl.attr('src', imgUrl);
-        imageEl.attr('display', 'block');
-        videoFrameEl.attr('src', '')
-        videoFrameEl.attr('display', 'none')
+        videoFrameEl.addClass('hidden');
+        imageEl.removeClass('hidden');
     }
 }
 
