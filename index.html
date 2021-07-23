@@ -9,14 +9,40 @@
     <title>INSPIRATION STATION</title>
 </head>
 <body>
+    <nav>
+        <div id="user-input" class="p-2 text-gray-400 bg-gray-800 items-center">
+            <label for="Date">NASA Pic of the Day:</label>
+            <input id="date-search" type="date" placeholder="YYYY-MM-DD">
+            <button id="submit-nasa" class="ml-4 inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg">Get NASA Pic</button>
+            <button id="submit-meme" class="ml-4 inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg">Get Meme Pic</button>
+            <button id="submit-quote" class="ml-4 inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg">Get Quote</button>
+        </div>
 
-<div id="header" class="md:container md:mx-auto">
+    </nav>
+    <section class="text-gray-400 bg-gray-900 body-font">
+        <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
+          <img id="image" class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero" >
+          <div id="videoContainer">
+            <iframe id='videoFrame' width="450" height="283" src="" frameborder="0" allowfullscreen wmode="Opaque"></iframe>
+          </div>
+          <div class="text-center lg:w-2/3 w-full">
+            <h1 id="quote-text" class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">Microdosing synth tattooed vexillologist</h1>
+            <p class="leading-relaxed mb-8">Meggings kinfolk echo park stumptown DIY, kale chips beard jianbing tousled. Chambray dreamcatcher trust fund, kitsch vice godard disrupt ramps hexagon mustache umami snackwave tilde chillwave ugh. Pour-over meditation PBR&amp;B pickled ennui celiac mlkshk freegan photo booth af fingerstache pitchfork.</p>
+            <div class="flex justify-center">
+              <button class="inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg" id=save-image>Save Image</button>
+              <button class="ml-4 inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg" id="save-quote">Save Quote</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+<!-- <div id="header" class="md:container md:mx-auto">
     <h1 class="font-serif ...">Inspiration Station</h1>
     <h3 class="font-serif ...">NASA is flying a helicopter on Mars. Olympians are shattering athletic records on Earth. What's your excuse?</h3>
     <p class="font-serif ...">Take a hit of inspiration by searching for a content theme and clicking on the button below.</p>
-</div>
+</div> -->
 
-<div id="main" class="md:container md:mx-auto">
+<!-- <div id="main" class="md:container md:mx-auto">
     <div id="main" class="container mx-auto px-20">
         <img id="image" class="object-none object-center">
         <div id="videoContainer">
@@ -24,18 +50,18 @@
           </div>
         <div id="quote-text" class="decoration-clone md:decoration-slice">
         </div>
-        <button id="save-image" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">Save Image</button>
-        <button id="save-quote" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">Save Quote</button>
+        <button id=save-image>Save Image</button>
+        <button id="save-quote">Save Quote</button>
     </div>
-</div>
+</div> -->
 
-<div id="user-input" class="md:container md:mx-auto">
+<!-- <div id="user-input" class="md:container md:mx-auto">
     <label for="Date">NASA Pic of the Day:</label>
-    <input id="date-search" type="date" placeholder="YYYY-MM-DD" class =" ">
-    <button id="submit-nasa" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">Get NASA Pic</button>
-    <button id="submit-meme" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">Get Meme Pic</button>
-    <button id="submit-quote" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">Get Quote</button>
-</div>
+    <input id="date-search" type="date" placeholder="YYYY-MM-DD">
+    <button id="submit-nasa" class="inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg">Get NASA Pic</button>
+    <button id="submit-meme" class="inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg">Get Meme Pic</button>
+    <button id="submit-quote" class="inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg">Get Quote</button>
+</div> -->
 
 <div id="saved-searches" class="md:container md:mx-auto"></div>
     

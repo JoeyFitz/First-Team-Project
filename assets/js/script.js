@@ -41,8 +41,14 @@ function getNasaImage(){
             imageUrl = data.url;
             if (imageUrl.includes('youtube')) {
                 videoFrameEl.attr('src', data.url )
+                videoFrameEl.attr('display', 'block');
+                imageEl.attr('src', '');
+                imageEl.attr('display','none');
             } else {
                 imageEl.attr('src', data.url);
+                imageEl.attr('display', 'block');
+                videoFrameEl.attr('src', '')
+                videoFrameEl.attr('display', 'none')
             }
     })
 };
