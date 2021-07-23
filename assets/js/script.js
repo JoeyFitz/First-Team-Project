@@ -22,6 +22,12 @@ var quotesApiUrl = "https://type.fit/api/quotes";
 var arrSavedImages = JSON.parse(localStorage.getItem('arrImages')) || [];
 var arrSavedQuotes = JSON.parse(localStorage.getItem('arrQuotes')) || [];
 
+
+//Global variables for storage
+var imageUrl;
+var quoteStr;
+
+
 loadQuotes();
 loadImages();
 
@@ -32,9 +38,6 @@ submitQuoteBtn.on('click', getQuote);
 saveImageBtn.on('click', saveImage);
 saveQuoteBtn.on('click', saveQuote);
 
-//Global variables for storage
-var imageUrl;
-var quoteStr;
 
 //Get Image Functions
 function getNasaImage(){
@@ -44,19 +47,7 @@ function getNasaImage(){
     .then(res => res.json())
         .then(data =>{
             imageUrl = data.url;
-            if (imageUrl.includes('youtube')) {
-
-                videoFrameEl.attr('src', data.url)
-                videoFrameEl.attr('display', 'block');
-                imageEl.attr('src', '');
-                imageEl.attr('display','none');
-                
-            } else {
-                imageEl.attr('src', data.url);
-                imageEl.attr('display', 'block');
-                videoFrameEl.attr('src', '')
-                videoFrameEl.attr('display', 'none')
-            }
+            setImage(imageUrl);
     })
 };
 
@@ -67,9 +58,27 @@ function getMemeImage(){
     imageEl.attr('src', data.url);
         var i=Math.floor(Math.random() * data.data.memes.length);
         imageUrl = data.data.memes[i].url;
-        imageEl.attr('src', imageUrl);
+        setImage(imageUrl);
     })
 };
+
+//Simple Set image so that the saved cards can use them too
+function setImage(imgUrl){
+    console.log('ImgUrl: ' + imgUrl);
+    console.log(imageEl.attr("value"));
+    if (imgUrl.includes('youtube')) {
+        videoFrameEl.attr('src', imgUrl)
+        videoFrameEl.attr('display', 'block');
+        imageEl.attr('src', '');
+        imageEl.attr('display','none');
+        
+    } else {
+        imageEl.attr('src', imgUrl);
+        imageEl.attr('display', 'block');
+        videoFrameEl.attr('src', '')
+        videoFrameEl.attr('display', 'none')
+    }
+}
 
 //Get Quote
 function getQuote(){
@@ -78,9 +87,14 @@ function getQuote(){
     .then(data =>{
         var i=Math.floor(Math.random() * data.length);
         quoteStr = (data[i].text) + "--" + (data[i].author);
-        quoteTextEl.html(quoteStr);
+        setQuote(quoteStr);
     })
 };
+
+//Simple Set quote so that the saved cards can use them too
+function setQuote(qtText){
+    quoteTextEl.html(qtText);
+}
 
 //Save functions
 function saveImage(){
@@ -94,34 +108,44 @@ function saveQuote(){
     arrSavedQuotes.push(quoteStr);
     localStorage.setItem('arrQuotes', JSON.stringify(arrSavedQuotes));
 }
-// Load Save Images
-function loadImages(){
-    savedImagesEl.empty();
-    for (i=0; i < arrSavedImages.length; i++){
-        var imageCard = $("<div>");
-        var imageThumb = $("<img>");
-        console.log(arrSavedImages[i]);
-        imageThumb.attr('src', arrSavedImages[i]);
-        imageCard.append(imageThumb);
-        savedImagesEl.append(imageCard);
-    }
-}
-
 
 // Load Saved Quotes
 function loadQuotes(){
     savedQuotesEl.empty();
     for (i=0; i < arrSavedQuotes.length; i++){
-        var quoteCard = $('<div>');
+        
+        //Make div to hold the quote
+        var quoteCard = $('<button>');
+            quoteCard.attr("onclick", 'setQuote(this.value)');
+            quoteCard.attr("value", arrSavedQuotes[i]);
+        
+        //Make the quote text
         var quoteText = $('<p>');
-        console.log(arrSavedQuotes[i]);
-        quoteText.text(arrSavedQuotes[i]);           
-        quoteCard.append(quoteText);
-
-        savedQuotesEl.append(quoteCard);
+            quoteText.text(arrSavedQuotes[i]);         
+        
+        quoteCard.append(quoteText); //append the text to the div
+        savedQuotesEl.append(quoteCard); //append the div to the saved-quotes
     }
 }
-
+// Load Save Images
+function loadImages(){
+    savedImagesEl.empty();
+    for (i=0; i < arrSavedImages.length; i++){
+        //Make div to hold the image thumbnail
+        var imageCard = $("<button>");
+            imageCard.attr("value", arrSavedImages[i]);
+            // imageCard.attr("onclick", 'setImage("' + arrSavedImages[i] + '")');
+            imageCard.attr("onclick", 'setImage(this.value)');
+        
+       // make image thumbnail
+        var imageThumb = $("<img>");
+            imageThumb.attr('src', arrSavedImages[i]);
+        
+        
+        imageCard.append(imageThumb); //append thumbnail to container
+        savedImagesEl.append(imageCard); // append container to saved-images section
+    }
+}
 
 //Dark mode toggle
 function darkModeToggle() {
@@ -129,46 +153,3 @@ function darkModeToggle() {
     element.classList.toggle("dark-mode");
 }
 
-//Make floating text element
-
-// dragElement(document.getElementById("mydiv"));
-
-// function dragElement(elmnt) {
-//   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-//   if (document.getElementById(elmnt.id + "header")) {
-//     /* if present, the header is where you move the DIV from:*/
-//     document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-//   } else {
-//     /* otherwise, move the DIV from anywhere inside the DIV:*/
-//     elmnt.onmousedown = dragMouseDown;
-//   }
-
-//   function dragMouseDown(e) {
-//     e = e || window.event;
-//     e.preventDefault();
-//     // get the mouse cursor position at startup:
-//     pos3 = e.clientX;
-//     pos4 = e.clientY;
-//     document.onmouseup = closeDragElement;
-//     // call a function whenever the cursor moves:
-//     document.onmousemove = elementDrag;
-//   }
-
-//   function elementDrag(e) {
-//     e = e || window.event;
-//     e.preventDefault();
-//     // calculate the new cursor position:
-//     pos1 = pos3 - e.clientX;
-//     pos2 = pos4 - e.clientY;
-//     pos3 = e.clientX;
-//     pos4 = e.clientY;
-//     // set the element's new position:
-//     elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-//     elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-//   }
-
-//   function closeDragElement() {
-//     /* stop moving when mouse button is released:*/
-//     document.onmouseup = null;
-//     document.onmousemove = null;
-//   }
