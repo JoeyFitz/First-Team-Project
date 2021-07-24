@@ -65,26 +65,39 @@ savedImagesEl.on('click',function(event) {
     console.log('ClickedUrl: ' + JSON.stringify(clickedImage));
 });
 
-
-
-//Dark mode toggle
-function darkModeToggle() {
-    var element = document.body;
-    element.classList.toggle("dark-mode");
-}
-
 //Creates random image/quote combo
 function getHit(){
-    getMemeImage();
-    getInspQuote();
+    var imagerndm=Math.floor(Math.random() * 2);
+    var quoterndm=Math.floor(Math.random() * 2);
+    if(imagerndm == 1){
+        getMemeImage();
+    } else {
+        getNasaImage(null, setRandomDate(6000));
+    }
+    if(quoterndm == 1){
+        getOfficeQuote();
+    } else {
+        getInspQuote();
+    }
+
 }
+
+function setRandomDate(numDay){
+    let now = new Date();
+    var randomDay;
+    numDay = Math.floor(Math.random() * numDay);
+    now = now -(1000*60*60*24*numDay);
+    randomDay = new Date(now);
+    console.log('sample', dateFns.format(randomDay, 'YYYY-MM-DD'));
+    return dateFns.format(randomDay, 'YYYY-MM-DD');
+}
+
 ///////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 ////////////////////// IMAGE FUNCTIONs////////////////////////////////
 //Get Nasa Image from APOD API call
-function getNasaImage(){
-    imageUrl = nasaApiUrl + dateInputEl[0].value;
-    console.log(imageUrl);
+function getNasaImage(event, randomDate){
+    imageUrl = nasaApiUrl + (randomDate ? randomDate : dateInputEl[0].value);
     fetch(imageUrl)
     .then(res => res.json())
         .then(data =>{
