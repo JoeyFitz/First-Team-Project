@@ -178,8 +178,29 @@ function getQuote(){
 };
 
 //Simple Set quote so that the saved cards can use them too
-function setQuote(qtText){
-    quoteTextEl.html(qtText.value);
+function setQuote(qt){
+        
+    //Make sure a saved card is clicked and then update qtText
+    var qtId = qt.id;
+    if (qtId == 'quoteCard'){
+        qtText = qt.value;
+    } else {
+        qtText = qt;
+    }
+
+    //Handle ControlKey
+    if (cntrlIsPressed){
+        var index = arrSavedQuotes.indexOf(qtText);
+        console.log(qtText);    
+        if (index > -1) {
+            arrSavedQuotes.splice(index, 1);
+            localStorage.setItem('arrQuotes', JSON.stringify(arrSavedQuotes));
+            loadQuotes();
+        }
+    }
+    else{
+        quoteTextEl.html(qtText);
+    }
 }
 
 
