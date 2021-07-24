@@ -97,22 +97,23 @@ function setQuote(qtText){
 
 //Save functions
 function saveImage(){
-    console.log('imageUrl: ' +  imageUrl);
-    if (imageUrl){
+    
+    if (imageUrl != null){
         arrSavedImages.push(imageUrl);
         localStorage.setItem('arrImages', JSON.stringify(arrSavedImages));
-    } else {
         loadImages();
+    } else {
+        console.log('imageUrl: ' +  imageUrl);
     }
 }
 
 function saveQuote(){
-    console.log("quoteStr: " + quoteStr);
-    if (quoteStr){
+    if (quoteStr != null){
         arrSavedQuotes.push(quoteStr);
         localStorage.setItem('arrQuotes', JSON.stringify(arrSavedQuotes));
-    } else {
         loadQuotes();
+    } else {
+        console.log("quoteStr: " + quoteStr);
     }
 }
 
