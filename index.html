@@ -13,7 +13,7 @@
   <title>INSPIRATION STATION</title>
 </head>
 
-<body>
+<body class="bg-gray-900 ">
   <section class="text-gray-400 bg-gray-900 body-font">
     <div class="container  mx-auto flex px-5 py-10 items-center justify-center flex-col">
       <img id="image"
@@ -30,37 +30,41 @@
             class=" text-white w-3/12 h-20 bg-purple-500 border-0 py-2 px-6 text-4xl focus:outline-none hover:bg-purple-600 rounded text-lg"
             id=save-image>Save Image</button>
           <button
-            class="ml-4 w-3/12 text-white text-4xl bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg"
+            class="mx-5 w-3/12 text-white text-4xl bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg"
             id="save-quote">Save Quote</button>
         </div>
       </div>
     </div>
   </section>
   <nav>
-    <div id="user-input" class="p-2 grid grid-cols-3 text-gray-400 bg-gray-800">
+    <div id="user-input" class="p-2 grid grid-cols-3 text-gray-400 bg-gray-800 mx-5">
       <!-- div for picture buttons collumn -->
-      <div class="grid grid-cols-1 border-r-8 border-solid border-gray-900">
+      <div class="grid flex grid-cols-1 border-r-8 border-solid border-gray-900">
         <h2 class="text-center text-4xl text-white underline mb-4">Select an Image</h2>
-        <label for="Date">NASA Pic of the Day:</label>
+        <label class="text-center" for="Date">Pick a Date:</label>
         <div class="grid grid-cols-2">
           <input id="date-search" type="date" placeholder="YYYY-MM-DD">
           <button id="submit-nasa"
-            class="ml-4 text-white bg-purple-500 border-0 py-2 px-6 rounded-full w-10/12 text-2xl focus:outline-none hover:bg-purple-600 rounded text-lg">NASA Pic
+            class="mx-5 justify-center text-white bg-purple-500 border-0 py-2 px-6 rounded-full w-10/12 text-2xl focus:outline-none hover:bg-purple-600 rounded text-lg">Get
+            NASA Pic
           </button>
         </div>
         <span class="text-center">--OR--</span>
         <button id="submit-meme"
-          class="ml-4 text-white bg-purple-500 border-0 align-center py-2 px-6 mb-2 rounded-full text-2xl w-11/12 focus:outline-none hover:bg-purple-600 rounded text-lg">Meme Pic
+          class="mx-5 text-white bg-purple-500 border-0 align-center py-2 px-6 mb-2 rounded-full text-2xl w-11/12 focus:outline-none hover:bg-purple-600 rounded text-lg">Get
+          Meme Pic
         </button>
       </div>
       <!-- div for text buttons collumn -->
-      <div class="grid grid-cols-1 grid-rows-5 border-r-8 border-solid border-gray-900">
+      <div class="grid grid-cols-1 grid-rows-5 border-r-8 border-solid justify-center border-gray-900">
         <h2 class="text-center row-span-1 text-4xl text-white underline">Select a Quote</h2>
         <button id="submit-inspQuote"
-          class="ml-4 text-white text-4xl bg-purple-500 border-0 row-start-2 my-5 py-5 row-span-2 rounded-full w-11/12 focus:outline-none hover:bg-purple-600 rounded text-lg">Inspirational Quote
+          class="mx-5 text-white text-4xl content-center bg-purple-500 border-0 row-start-2 my-5 py-5 row-span-2 rounded-full w-11/12 focus:outline-none hover:bg-purple-600 roundeWd text-lg">Get
+          Inspirational Quote
         </button>
        <button id="submit-officeQuote"
-        class="ml-4 text-white text-4xl bg-purple-500 border-0 row-start-4 row-span-2 my-5 py-5 rounded-full w-11/12 focus:outline-none hover:bg-purple-600 rounded text-lg">Office Quote
+        class="mx-5 text-white text-4xl bg-purple-500 border-0 row-start-4 row-span-2 my-5 py-5 rounded-full w-11/12 focus:outline-none hover:bg-purple-600 rounded text-lg">Get
+        Office Quote
       </button>
     
       </div> 
@@ -68,7 +72,7 @@
       <div class="grid grid-cols-1 grid-rows-5">
         <h2 class="text-center text-4xl text-white underline">Roll the Dice?</h2>
         <button id="take-a-hit"
-        class="ml-4  text-white text-4xl  bg-red-700 border-0  row-start-3 row-span-2 rounded-full w-11/12 focus:outline-none hover:bg-red-900 rounded text-lg">Take A Hit!</button>
+        class="mx-5  text-white text-4xl  bg-red-700 border-0  row-start-3 row-span-2 rounded-full w-11/12 focus:outline-none hover:bg-red-900 rounded text-lg">Take A Hit!</button>
       </div>
       
 
@@ -78,7 +82,7 @@
   <div id="saved-searches" class="grid grid-cols-2 bg-gray-900 w-full text-white underline py-8">
     <h2 class="text-center w-full mb-5 text-4xl text-ce">Saved Images</h2>
     <h2 class="text-center w-full mb-5  text-4xl">Saved Quotes</h2>
-    <div id="saved-images" class="grid grid-cols-3 w-6/6 h-auto items-center gap-3">
+    <div id="saved-images" class="grid 2xl:grid-cols-7 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 w-6/6 h-auto items-center gap-3">
 
     </div>
 
