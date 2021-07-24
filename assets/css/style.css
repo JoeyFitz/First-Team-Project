@@ -46,3 +46,10 @@ p {
   body{
     padding: 0px;
   }
+  button{
+    justify-self: center;
+  }
+
+  .centerme{
+    align-items: center;
+  }
