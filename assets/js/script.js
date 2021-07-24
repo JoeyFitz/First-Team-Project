@@ -27,9 +27,22 @@ var arrSavedQuotes = JSON.parse(localStorage.getItem('arrQuotes')) || [];
 var imageUrl;
 var quoteStr;
 
-
+//Get the saved Content on the page
 loadQuotes();
 loadImages();
+
+//Toggle a boolean with CTRL Key for use with removing saved content
+var cntrlIsPressed = false;
+
+$(document).keydown(function(event){
+    if(event.which == 17 || event.keycode == 17){
+        cntrlIsPressed = true;
+    }
+});
+
+$(document).keyup(function(){
+    cntrlIsPressed = false;
+});
 
 //Click events
 submitNasaBtn.on('click', getNasaImage);
@@ -38,8 +51,25 @@ submitQuoteBtn.on('click', getQuote);
 saveImageBtn.on('click', saveImage);
 saveQuoteBtn.on('click', saveQuote);
 
+savedImagesEl.on('click',function(event) {
+    var clickedImage = event;
+    var clickedUrl ; //= clickedImage.attr('value');
 
-//Get Image Functions
+    console.log('ClickedUrl: ' + JSON.stringify(clickedImage));
+});
+
+
+
+//Dark mode toggle
+function darkModeToggle() {
+    var element = document.body;
+    element.classList.toggle("dark-mode");
+}
+
+///////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+////////////////////// IMAGE FUNCTIONs////////////////////////////////
+//Get Nasa Image from APOD API call
 function getNasaImage(){
     imageUrl = nasaApiUrl + dateInputEl[0].value;
     console.log(imageUrl);
@@ -50,7 +80,7 @@ function getNasaImage(){
             setImage(imageUrl);
     })
 };
-
+//Get Meme Image From imgFlip API Call
 function getMemeImage(){
     fetch(memeApiUrl)
     .then(res => res.json())
@@ -62,24 +92,81 @@ function getMemeImage(){
     })
 };
 
-//Simple Set image so that the saved cards can use them too
-function setImage(imgUrl){
-    console.log('ImgUrl: ' + imgUrl);
-    console.log(imageEl.attr("value"));
-    if (imgUrl.includes('youtube')) {
-        
-        videoFrameEl.attr('src', imgUrl)
-        videoFrameEl.removeClass('hidden');
-        imageEl.addClass('hidden');
-        
+//SetImage
+function setImage(img){
+    
+    //Make sure a saved card is clicked and then update imgeUrl
+    var imgId = img.id;
+    if (imgId == 'imageCard'){
+        imgUrl = img.value;
     } else {
-        imageEl.attr('src', imgUrl);
-        videoFrameEl.addClass('hidden');
-        imageEl.removeClass('hidden');
+        imgUrl = img;
+    }
+
+    //Handle ControlKey
+    console.log(cntrlIsPressed);
+    if (cntrlIsPressed){
+        var index = arrSavedImages.indexOf(imgUrl);
+        if (index > -1) {
+            arrSavedImages.splice(index, 1);
+            localStorage.setItem('arrImages', JSON.stringify(arrSavedImages));
+            loadImages();
+        }
+    }
+    else{
+        // handle if the APOD is a youtube video
+        if (imgUrl.includes('youtube')) {
+            
+            videoFrameEl.attr('src', imgUrl)
+            videoFrameEl.removeClass('hidden');
+            imageEl.addClass('hidden');
+            
+        } else {
+            imageEl.attr('src', imgUrl);
+            videoFrameEl.addClass('hidden');
+            imageEl.removeClass('hidden');
+        }
+    }
+
+}
+//Load Images from local storage array
+function loadImages(){
+    savedImagesEl.empty();
+    for (i=0; i < arrSavedImages.length; i++){
+        //Make div to hold the image thumbnail
+        var imageCard = $("<button>");
+            imageCard.attr('id','imageCard');
+            imageCard.attr("value", arrSavedImages[i]);
+            imageCard.attr("onclick", 'setImage(this)');
+        
+       // make image thumbnail
+        var imageThumb = $("<img>");
+            imageThumb.attr('src', arrSavedImages[i]);
+        
+        
+        imageCard.append(imageThumb); //append thumbnail to container
+        savedImagesEl.append(imageCard); // append container to saved-images section
     }
 }
 
-//Get Quote
+//Save functions to local storage array
+function saveImage(){
+    if (imageUrl != null & !cntrlIsPressed){
+        arrSavedImages.push(imageUrl);
+        localStorage.setItem('arrImages', JSON.stringify(arrSavedImages));
+    } else if(cntrlIsPressed) {
+        
+    }
+    loadImages();
+}
+
+
+//||\\||\\\|\\||\\||\\||\\||//||\\||\\\|\\||\\||\\||\\||//||\\||\\||\\||\\||\\||\\||//||\\||\
+//||\\||\\\|\\||\\||\\||\\||//||\\||\\\|\\||\\||\\||\\||//||\\||\\||\\||\\||\\||\\||//||\\||\
+//||\\||\\\|\\||\\||\\||\\||QUOTE FUNCTIONS\\||\\\|\\||\\||\\||\\||\\||\\\|\\||\\||\\||\\||\
+
+
+//\\ Get Quote from API
 function getQuote(){
     fetch(quotesApiUrl)
     .then(res => res.json())
@@ -92,42 +179,22 @@ function getQuote(){
 
 //Simple Set quote so that the saved cards can use them too
 function setQuote(qtText){
-    quoteTextEl.html(qtText);
+    quoteTextEl.html(qtText.value);
 }
 
-//Save functions
-function saveImage(){
-    
-    if (imageUrl != null){
-        arrSavedImages.push(imageUrl);
-        localStorage.setItem('arrImages', JSON.stringify(arrSavedImages));
-        loadImages();
-    } else {
-        console.log('imageUrl: ' +  imageUrl);
-    }
-}
 
-function saveQuote(){
-    if (quoteStr != null){
-        arrSavedQuotes.push(quoteStr);
-        localStorage.setItem('arrQuotes', JSON.stringify(arrSavedQuotes));
-        loadQuotes();
-    } else {
-        console.log("quoteStr: " + quoteStr);
-    }
-}
-
-// Load Saved Quotes
+//\\ Load Saved Quotes
 function loadQuotes(){
     savedQuotesEl.empty();
     for (i=0; i < arrSavedQuotes.length; i++){
         
-        //Make div to hold the quote
+        //\\Make div to hold the quote
         var quoteCard = $('<button>');
-            quoteCard.attr("onclick", 'setQuote(this.value)');
+        quoteCard.attr('id','quoteCard');
+            quoteCard.attr("onclick", 'setQuote(this)');
             quoteCard.attr("value", arrSavedQuotes[i]);
         
-        //Make the quote text
+        //\\Make the quote text
         var quoteText = $('<p>');
             quoteText.text(arrSavedQuotes[i]);         
         
@@ -135,29 +202,23 @@ function loadQuotes(){
         savedQuotesEl.append(quoteCard); //append the div to the saved-quotes
     }
 }
-// Load Save Images
-function loadImages(){
-    savedImagesEl.empty();
-    for (i=0; i < arrSavedImages.length; i++){
-        //Make div to hold the image thumbnail
-        var imageCard = $("<button>");
-            imageCard.attr("value", arrSavedImages[i]);
-            // imageCard.attr("onclick", 'setImage("' + arrSavedImages[i] + '")');
-            imageCard.attr("onclick", 'setImage(this.value)');
-        
-       // make image thumbnail
-        var imageThumb = $("<img>");
-            imageThumb.attr('src', arrSavedImages[i]);
-        
-        
-        imageCard.append(imageThumb); //append thumbnail to container
-        savedImagesEl.append(imageCard); // append container to saved-images section
+
+//\\ Save Quote to local storage ((IF CTRL PRESSED THEN DELETE)
+function saveQuote(){
+    if (quoteStr != null){
+        arrSavedQuotes.push(quoteStr);
+        localStorage.setItem('arrQuotes', JSON.stringify(arrSavedQuotes));
+    } else {
+        console.log("quoteStr: " + quoteStr);
     }
+    loadQuotes();
 }
 
-//Dark mode toggle
-function darkModeToggle() {
-    var element = document.body;
-    element.classList.toggle("dark-mode");
-}
+
+
+
+
+
+
+
 
