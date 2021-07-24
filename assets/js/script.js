@@ -137,6 +137,7 @@ function loadImages(){
         var imageCard = $("<button>");
             imageCard.attr('id','imageCard');
             imageCard.attr("value", arrSavedImages[i]);
+            
             imageCard.attr("onclick", 'setImage(this)');
         
        // make image thumbnail
@@ -213,6 +214,7 @@ function loadQuotes(){
         var quoteCard = $('<button>');
         quoteCard.attr('id','quoteCard');
             quoteCard.attr("onclick", 'setQuote(this)');
+            quoteCard.addClass('border-4 border-solid p-4')
             quoteCard.attr("value", arrSavedQuotes[i]);
         
         //\\Make the quote text
