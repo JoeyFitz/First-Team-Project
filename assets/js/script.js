@@ -153,8 +153,11 @@ function loadImages(){
 //Save functions to local storage array
 function saveImage(){
     if (imageUrl != null & !cntrlIsPressed){
-        arrSavedImages.push(imageUrl);
-        localStorage.setItem('arrImages', JSON.stringify(arrSavedImages));
+        var index = arrSavedImages.indexOf(imgUrl);
+        if (!(index > -1)) {
+            arrSavedImages.push(imageUrl);
+            localStorage.setItem('arrImages', JSON.stringify(arrSavedImages));
+        }
     } else if(cntrlIsPressed) {
         
     }
@@ -229,8 +232,11 @@ function loadQuotes(){
 //\\ Save Quote to local storage ((IF CTRL PRESSED THEN DELETE)
 function saveQuote(){
     if (quoteStr != null){
-        arrSavedQuotes.push(quoteStr);
-        localStorage.setItem('arrQuotes', JSON.stringify(arrSavedQuotes));
+        var index = arrSavedQuotes.indexOf(quoteStr);
+        if (!(index > -1)) {
+            arrSavedQuotes.push(quoteStr);
+            localStorage.setItem('arrQuotes', JSON.stringify(arrSavedQuotes));
+        }
     } else {
         console.log("quoteStr: " + quoteStr);
     }
