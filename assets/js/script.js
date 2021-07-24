@@ -57,16 +57,6 @@ submitHitBtn.on('click', getHit);
 saveImageBtn.on('click', saveImage);
 saveQuoteBtn.on('click', saveQuote);
 
-
-savedImagesEl.on('click',function(event) {
-    var clickedImage = event;
-    var clickedUrl ; //= clickedImage.attr('value');
-
-    console.log('ClickedUrl: ' + JSON.stringify(clickedImage));
-});
-
-
-
 //Dark mode toggle
 function darkModeToggle() {
     var element = document.body;
@@ -107,7 +97,7 @@ function getMemeImage(){
 //SetImage
 function setImage(img){
     
-    //Make sure a saved card is clicked and then update imgeUrl
+    //Make sure a saved card is clicked and then update imgUrl
     var imgId = img.id;
     if (imgId == 'imageCard'){
         imgUrl = img.value;
@@ -153,10 +143,14 @@ function loadImages(){
             imageCard.attr("onclick", 'setImage(this)');
         
        // make image thumbnail
-        var imageThumb = $("<img>");
+       var index = arrSavedImages[i].includes("youtube");
+       var imageThumb = $("<img>");
+       if (index) {
+           console.log("imageUrl: " + arrSavedImages[i]);
+            imageThumb.attr('src', "./assets/images/youtube.png");
+       }else {
             imageThumb.attr('src', arrSavedImages[i]);
-        
-        
+       }
         imageCard.append(imageThumb); //append thumbnail to container
         savedImagesEl.append(imageCard); // append container to saved-images section
     }
