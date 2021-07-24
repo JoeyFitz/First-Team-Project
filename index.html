@@ -14,26 +14,12 @@
 </head>
 
 <body>
-  <nav>
-    <div id="user-input" class="p-2 text-gray-400 bg-gray-800">
-      <label for="Date">NASA Pic of the Day:</label>
-      <input id="date-search" type="date" placeholder="YYYY-MM-DD">
-      <button id="submit-nasa"
-        class="ml-4 inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg">Get
-        NASA Pic</button>
-      <button id="submit-meme"
-        class="ml-4 inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg">Get
-        Meme Pic</button>
-      <button id="submit-quote"
-        class="ml-4 inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg">Get
-        Quote</button>
-      <button onclick="darkModeToggle()">Toggle dark mode</button>
-    </div>
-
-  </nav>
+  <button onclick="darkModeToggle()">Toggle dark mode</button>
+  </div>
   <section class="text-gray-400 bg-gray-900 body-font">
     <div class="container  mx-auto flex px-5 py-10 items-center justify-center flex-col">
-      <img id="image" class="lg:w-5/6 md:w-5/6 w-5/6 mb-10 h-auto object-cover object-center rounded"
+      <img id="image"
+        class="lg:w-5/6 md:w-5/6 w-5/6 mb-10 h-auto border-8 border-black object-cover object-center rounded"
         src="./assets/images/howTo.png">
       <div id="videoContainer">
         <iframe id='videoFrame' class='hidden' width="900" height="566" src="" frameborder="0" allowfullscreen
@@ -43,98 +29,151 @@
         <h1 id="quote-text" class="title-font sm:text-4xl text-3xl my-4 font-medium text-white"></h1>
         <div class="flex justify-center">
           <button
-            class="inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg"
+            class=" text-white w-3/12 h-20 bg-purple-500 border-0 py-2 px-6 text-4xl focus:outline-none hover:bg-purple-600 rounded text-lg"
             id=save-image>Save Image</button>
           <button
-            class="ml-4 inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg"
+            class="ml-4 w-3/12 text-white text-4xl bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg"
             id="save-quote">Save Quote</button>
         </div>
       </div>
     </div>
   </section>
+  <nav>
+    <div id="user-input" class="p-2 grid grid-cols-3 text-gray-400 bg-gray-800">
+      <!-- div for picture buttons collumn -->
+      <div class="grid grid-cols-1 border-r-8 border-solid border-gray-900">
+        <h2 class="text-center text-4xl text-white underline mb-4">Select an Image</h2>
+        <label for="Date">NASA Pic of the Day:</label>
+        <div class="grid grid-cols-2">
+        <input id="date-search" type="date" placeholder="YYYY-MM-DD">
+        <button id="submit-nasa"
+          class="ml-4 text-white bg-purple-500 border-0 py-2 px-6 rounded-full w-10/12 text-2xl focus:outline-none hover:bg-purple-600 rounded text-lg">Get
+          NASA Pic</button>
+        </div>
+        <span class="text-center">--OR--</span>
+        <button id="submit-meme"
+          class="ml-4 text-white bg-purple-500 border-0 align-center py-2 px-6 rounded-full text-2xl w-11/12 focus:outline-none hover:bg-purple-600 rounded text-lg">Get
+          Meme Pic</button>
+      </div>
+      <!-- div for text buttons collumn -->
+      <div class="grid grid-cols-1 grid-rows-5 border-r-8 border-solid border-gray-900">
+      <h2 class="text-center row-span-1 text-4xl text-white underline">Select a Quote</h2>
+      <button id="submit-quote"
+      class="ml-4 text-white text-4xl bg-purple-500 border-0 row-start-3 row-span-2 rounded-full w-11/12 focus:outline-none hover:bg-purple-600 rounded text-lg">Get
+        Quote</button>
+    
+      </div> 
+      <!-- div for random buttons collumn -->
+      <div class="grid grid-cols-1 grid-rows-5">
+        <h2 class="text-center text-4xl text-white underline">Roll the Dice?</h2>
+        <button id="take-a-hit"
+        class="ml-4  text-white text-4xl  bg-red-700 border-0  row-start-3 row-span-2 rounded-full w-11/12 focus:outline-none hover:bg-red-900 rounded text-lg">Take A Hit!</button>
+      </div>
+      
 
-  <div id="saved-searches" class="grid grid-cols-2 bg-gray-900 w-full text-white underline">
-    <h2 class="text-center w-full mb-5 text-4xl">Saved Images</h2>
+
+
+  </nav>
+  <div id="saved-searches" class="grid grid-cols-2 bg-gray-900 w-full text-white underline py-8">
+    <h2 class="text-center w-full mb-5 text-4xl text-ce">Saved Images</h2>
     <h2 class="text-center w-full mb-5  text-4xl">Saved Quotes</h2>
     <div id="saved-images" class="grid grid-cols-3 w-6/6 h-auto items-center gap-3">
 
     </div>
-    
+
     <div id="saved-quotes" class="w-full text-indigo-200">
 
     </div>
   </div>
 
-    <!-- Completed Meme Section -->
-        <section class="text-gray-400 bg-gray-900 body-font">
-        <div class="container px-5 py-24 mx-auto">
-          <div class="flex flex-col text-center w-full mb-20">
-            <h1 class="text-4xl font-medium title-font mb-4 text-white underline">Completed Memes</h1>
-          </div>
-          <div class="flex flex-wrap -m-4">
-            <div class="lg:w-1/3 sm:w-1/2 p-4">
-              <div class="flex relative">
-                <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center" src="https://dummyimage.com/600x360">
-                <div class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
-                  <h2 class="tracking-widest text-sm title-font font-medium text-purple-400 mb-1">THE SUBTITLE</h2>
-                  <h1 class="title-font text-lg font-medium text-white mb-3">Shooting Stars</h1>
-                  <p class="leading-relaxed">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat.</p>
-                </div>
-              </div>
-            </div>
-            <div class="lg:w-1/3 sm:w-1/2 p-4">
-              <div class="flex relative">
-                <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center" src="https://dummyimage.com/601x361">
-                <div class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
-                  <h2 class="tracking-widest text-sm title-font font-medium text-purple-400 mb-1">THE SUBTITLE</h2>
-                  <h1 class="title-font text-lg font-medium text-white mb-3">The Catalyzer</h1>
-                  <p class="leading-relaxed">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat.</p>
-                </div>
-              </div>
-            </div>
-            <div class="lg:w-1/3 sm:w-1/2 p-4">
-              <div class="flex relative">
-                <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center" src="https://dummyimage.com/603x363">
-                <div class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
-                  <h2 class="tracking-widest text-sm title-font font-medium text-purple-400 mb-1">THE SUBTITLE</h2>
-                  <h1 class="title-font text-lg font-medium text-white mb-3">The 400 Blows</h1>
-                  <p class="leading-relaxed">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat.</p>
-                </div>
-              </div>
-            </div>
-            <div class="lg:w-1/3 sm:w-1/2 p-4">
-              <div class="flex relative">
-                <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center" src="https://dummyimage.com/602x362">
-                <div class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
-                  <h2 class="tracking-widest text-sm title-font font-medium text-purple-400 mb-1">THE SUBTITLE</h2>
-                  <h1 class="title-font text-lg font-medium text-white mb-3">Neptune</h1>
-                  <p class="leading-relaxed">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat.</p>
-                </div>
-              </div>
-            </div>
-            <div class="lg:w-1/3 sm:w-1/2 p-4">
-              <div class="flex relative">
-                <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center" src="https://dummyimage.com/605x365">
-                <div class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
-                  <h2 class="tracking-widest text-sm title-font font-medium text-purple-400 mb-1">THE SUBTITLE</h2>
-                  <h1 class="title-font text-lg font-medium text-white mb-3">Holden Caulfield</h1>
-                  <p class="leading-relaxed">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat.</p>
-                </div>
-              </div>
-            </div>
-            <div class="lg:w-1/3 sm:w-1/2 p-4">
-              <div class="flex relative">
-                <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center" src="https://dummyimage.com/606x366">
-                <div class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
-                  <h2 class="tracking-widest text-sm title-font font-medium text-purple-400 mb-1">THE SUBTITLE</h2>
-                  <h1 class="title-font text-lg font-medium text-white mb-3">Alper Kamu</h1>
-                  <p class="leading-relaxed">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat.</p>
-                </div>
-              </div>
+  <!-- Completed Meme Section -->
+  <section class="text-gray-400 bg-gray-900 body-font">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex flex-col text-center w-full mb-20">
+        <h1 class="text-4xl font-medium title-font mb-4 text-white underline">Completed Memes</h1>
+      </div>
+      <div class="flex flex-wrap -m-4">
+        <div class="lg:w-1/3 sm:w-1/2 p-4">
+          <div class="flex relative">
+            <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center"
+              src="https://dummyimage.com/600x360">
+            <div
+              class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
+              <h2 class="tracking-widest text-sm title-font font-medium text-purple-400 mb-1">THE SUBTITLE</h2>
+              <h1 class="title-font text-lg font-medium text-white mb-3">Shooting Stars</h1>
+              <p class="leading-relaxed">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing
+                tousled waistcoat.</p>
             </div>
           </div>
         </div>
-      </section>
+        <div class="lg:w-1/3 sm:w-1/2 p-4">
+          <div class="flex relative">
+            <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center"
+              src="https://dummyimage.com/601x361">
+            <div
+              class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
+              <h2 class="tracking-widest text-sm title-font font-medium text-purple-400 mb-1">THE SUBTITLE</h2>
+              <h1 class="title-font text-lg font-medium text-white mb-3">The Catalyzer</h1>
+              <p class="leading-relaxed">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing
+                tousled waistcoat.</p>
+            </div>
+          </div>
+        </div>
+        <div class="lg:w-1/3 sm:w-1/2 p-4">
+          <div class="flex relative">
+            <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center"
+              src="https://dummyimage.com/603x363">
+            <div
+              class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
+              <h2 class="tracking-widest text-sm title-font font-medium text-purple-400 mb-1">THE SUBTITLE</h2>
+              <h1 class="title-font text-lg font-medium text-white mb-3">The 400 Blows</h1>
+              <p class="leading-relaxed">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing
+                tousled waistcoat.</p>
+            </div>
+          </div>
+        </div>
+        <div class="lg:w-1/3 sm:w-1/2 p-4">
+          <div class="flex relative">
+            <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center"
+              src="https://dummyimage.com/602x362">
+            <div
+              class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
+              <h2 class="tracking-widest text-sm title-font font-medium text-purple-400 mb-1">THE SUBTITLE</h2>
+              <h1 class="title-font text-lg font-medium text-white mb-3">Neptune</h1>
+              <p class="leading-relaxed">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing
+                tousled waistcoat.</p>
+            </div>
+          </div>
+        </div>
+        <div class="lg:w-1/3 sm:w-1/2 p-4">
+          <div class="flex relative">
+            <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center"
+              src="https://dummyimage.com/605x365">
+            <div
+              class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
+              <h2 class="tracking-widest text-sm title-font font-medium text-purple-400 mb-1">THE SUBTITLE</h2>
+              <h1 class="title-font text-lg font-medium text-white mb-3">Holden Caulfield</h1>
+              <p class="leading-relaxed">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing
+                tousled waistcoat.</p>
+            </div>
+          </div>
+        </div>
+        <div class="lg:w-1/3 sm:w-1/2 p-4">
+          <div class="flex relative">
+            <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center"
+              src="https://dummyimage.com/606x366">
+            <div
+              class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
+              <h2 class="tracking-widest text-sm title-font font-medium text-purple-400 mb-1">THE SUBTITLE</h2>
+              <h1 class="title-font text-lg font-medium text-white mb-3">Alper Kamu</h1>
+              <p class="leading-relaxed">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing
+                tousled waistcoat.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- JS SCRIPT REFERENCES -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
