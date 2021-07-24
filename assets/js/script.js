@@ -13,6 +13,8 @@ var submitNasaBtn = $('#submit-nasa');
 var submitMemeBtn = $('#submit-meme');
 var submitInspQuoteBtn =$('#submit-inspQuote');
 var submitOfficeQuoteBtn =$('#submit-officeQuote');
+var submitHitBtn =$('#take-a-hit');
+
 
 // API URLs
 var nasaApiUrl= "https://api.nasa.gov/planetary/apod?api_key=v0cvQ8WnjhwP60Zgk9XAQILRGEfLKEUzb48uPaqh&date=";
@@ -51,8 +53,10 @@ submitNasaBtn.on('click', getNasaImage);
 submitMemeBtn.on('click', getMemeImage);
 submitInspQuoteBtn.on('click', getInspQuote);
 submitOfficeQuoteBtn.on('click', getOfficeQuote);
+submitHitBtn.on('click', getHit);
 saveImageBtn.on('click', saveImage);
 saveQuoteBtn.on('click', saveQuote);
+
 
 savedImagesEl.on('click',function(event) {
     var clickedImage = event;
@@ -69,6 +73,11 @@ function darkModeToggle() {
     element.classList.toggle("dark-mode");
 }
 
+//Creates random image/quote combo
+function getHit(){
+    getMemeImage();
+    getInspQuote();
+}
 ///////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 ////////////////////// IMAGE FUNCTIONs////////////////////////////////
