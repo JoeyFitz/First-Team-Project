@@ -11,12 +11,14 @@ var saveImageBtn = $('#save-image');
 var saveQuoteBtn = $('#save-quote');
 var submitNasaBtn = $('#submit-nasa');
 var submitMemeBtn = $('#submit-meme');
-var submitQuoteBtn =$('#submit-quote');
+var submitInspQuoteBtn =$('#submit-inspQuote');
+var submitOfficeQuoteBtn =$('#submit-officeQuote');
 
 // API URLs
 var nasaApiUrl= "https://api.nasa.gov/planetary/apod?api_key=v0cvQ8WnjhwP60Zgk9XAQILRGEfLKEUzb48uPaqh&date=";
 var memeApiUrl= "https://api.imgflip.com/get_memes";
-var quotesApiUrl = "https://type.fit/api/quotes";
+var inspQuotesApiUrl = "https://type.fit/api/quotes";
+var officeQuotesApiUrl = "https://www.officeapi.dev/api/quotes/random";
 
 // Get Local storage arrays OR empty array
 var arrSavedImages = JSON.parse(localStorage.getItem('arrImages')) || [];
@@ -47,7 +49,8 @@ $(document).keyup(function(){
 //Click events
 submitNasaBtn.on('click', getNasaImage);
 submitMemeBtn.on('click', getMemeImage);
-submitQuoteBtn.on('click', getQuote);
+submitInspQuoteBtn.on('click', getInspQuote);
+submitOfficeQuoteBtn.on('click', getOfficeQuote);
 saveImageBtn.on('click', saveImage);
 saveQuoteBtn.on('click', saveQuote);
 
@@ -171,12 +174,24 @@ function saveImage(){
 
 
 //\\ Get Quote from API
-function getQuote(){
-    fetch(quotesApiUrl)
+function getOfficeQuote(){
+    fetch(officeQuotesApiUrl)
+    .then(res => res.json())
+    .then(data =>{
+        console.log(data);
+        var author = data.data.character.firstname + " " + data.data.character.lastname;
+        quoteStr = (data.data.content) + " - " + author;
+        setQuote(quoteStr);
+    })
+};
+
+function getInspQuote(){
+    fetch(inspQuotesApiUrl)
     .then(res => res.json())
     .then(data =>{
         var i=Math.floor(Math.random() * data.length);
-        quoteStr = (data[i].text) + "--" + (data[i].author);
+        var author = data[i].author || 'Anonymous';
+        quoteStr = (data[i].text) + " - " + author;
         setQuote(quoteStr);
     })
 };
@@ -234,6 +249,7 @@ function saveQuote(){
     if (quoteStr != null){
         var index = arrSavedQuotes.indexOf(quoteStr);
         if (!(index > -1)) {
+            console.log(quoteStr);
             arrSavedQuotes.push(quoteStr);
             localStorage.setItem('arrQuotes', JSON.stringify(arrSavedQuotes));
         }
