@@ -31,6 +31,8 @@ var arrSavedQuotes = JSON.parse(localStorage.getItem('arrQuotes')) || [];
 var imageUrl;
 var quoteStr;
 
+console.log('imageUrl: ' + imageUrl);
+
 //Get the saved Content on the page
 loadQuotes();
 loadImages();
@@ -64,7 +66,9 @@ function getHit(){
     if(imageRndm == 1){
         getMemeImage();
     } else {
-        getNasaImage(null, setRandomDate(6000));
+        var setRandDate = setRandomDate(6000);
+        console.log(setRandDate);
+        getNasaImage(null, setRandDate);
     }
     if(quoteRndm == 1){
         getOfficeQuote();
@@ -79,7 +83,7 @@ function setRandomDate(numDay){
     numDay = Math.floor(Math.random() * numDay);
     now = now -(1000*60*60*24*numDay);
     randomDay = new Date(now);
-    console.log('sample', dateFns.format(randomDay, 'YYYY-MM-DD'));
+    console.log("rd:" + randomDay);
     return dateFns.format(randomDay, 'YYYY-MM-DD');
 }
 
@@ -87,12 +91,13 @@ function setRandomDate(numDay){
 //////////////////////////////////////////////////////////////////////
 ////////////////////// IMAGE FUNCTIONs////////////////////////////////
 //Get Nasa Image from APOD API call
-function getNasaImage(randomDate){
+function getNasaImage(event, randomDate){
     imageApiUrl = nasaApiUrl + (randomDate ? randomDate : dateInputEl[0].value);
     fetch(imageApiUrl)
     .then(res => res.json())
         .then(data =>{
             imageUrl = data.url;
+            console.log('imageUrl: ' + imageUrl);
             setImage(imageUrl);
     })
 };
@@ -110,37 +115,40 @@ function getMemeImage(){
 
 //SetImage
 function setImage(img){
+    console.log('img: ' + img);
     var comboCard = false;
-    //Make sure a saved card is clicked and then update imgUrl
+    //Make sure a saved card is clicked and then update imageUrl
     var imgId = img.id;
     if (imgId == 'imageCard'){
-        imgUrl = img.value;
+        imageUrl = img.value;
     } else if (imgId == 'comboCard'){
-        imgUrl = JSON.parse(img.value)
-        imgUrl = imgUrl.imgSrc;
+        imageUrl = JSON.parse(img.value)
+        imageUrl = imageUrl.imgSrc;
         comboCard = true;
     } else {
-        imgUrl = img;
+        imageUrl = img;
     }
+
+    console.log('imageUrl: ' + imageUrl);
 
     //Handle ControlKey
     if (cntrlIsPressed && !comboCard){
-        var index = arrSavedImages.indexOf(imgUrl);
+        var index = arrSavedImages.indexOf(imageUrl);
         if (index > -1) {
             arrSavedImages.splice(index, 1);
             localStorage.setItem('arrImages', JSON.stringify(arrSavedImages));
-            imgUrl = imageEl.attr('src');
+            console.log('imageUrl: ' + imageUrl);
             loadImages();
             }
         }
         else {
             // handle if the APOD is a youtube video
-            if (imgUrl.includes('youtube')) {
-                videoFrameEl.attr('src', imgUrl)
+            if (imageUrl.includes('youtube')) {
+                videoFrameEl.attr('src', imageUrl)
                 videoFrameEl.removeClass('hidden');
                 imageEl.addClass('hidden');
             } else {
-                imageEl.attr('src', imgUrl);
+                imageEl.attr('src', imageUrl);
                 videoFrameEl.addClass('hidden');
                 imageEl.removeClass('hidden');
             }
@@ -149,6 +157,7 @@ function setImage(img){
 }
 //Load Images from local storage array
 function loadImages(){
+    console.log('imageUrl: ' + imageUrl);
     savedImagesEl.empty();
     for (i=0; i < arrSavedImages.length; i++){
         //Make div to hold the image thumbnail
@@ -172,8 +181,10 @@ function loadImages(){
 
 //Save functions to local storage array
 function saveImage(){
+    imageUrl = imageEl.attr('src');
+    console.log('imageUrl: ' + imageUrl);
     if (imageUrl != null & !cntrlIsPressed){
-        var index = arrSavedImages.indexOf(imgUrl);
+        var index = arrSavedImages.indexOf(imageUrl);
         if (!(index > -1)) {
             arrSavedImages.push(imageUrl);
             localStorage.setItem('arrImages', JSON.stringify(arrSavedImages));
@@ -195,7 +206,6 @@ function getOfficeQuote(){
     fetch(officeQuotesApiUrl)
     .then(res => res.json())
     .then(data =>{
-        console.log(data);
         var author = data.data.character.firstname + " " + data.data.character.lastname;
         quoteStr = (data.data.content) + " - " + author;
         setQuote(quoteStr);
@@ -222,7 +232,6 @@ function setQuote(qt){
         qtText = qt.value;
     } else if (qtId == "comboCard"){
         qtText = JSON.parse(qt.value)
-        console.log(qtText);
         qtText = qtText.textQuote;
         comboCard =true;
     } else {
@@ -271,12 +280,10 @@ function saveQuote(){
     if (quoteStr != null){
         var index = arrSavedQuotes.indexOf(quoteStr);
         if (!(index > -1)) {
-            console.log(quoteStr);
             arrSavedQuotes.push(quoteStr);
             localStorage.setItem('arrQuotes', JSON.stringify(arrSavedQuotes));
         }
     } else {
-        console.log("quoteStr: " + quoteStr);
     }
     loadQuotes();
 }
@@ -298,7 +305,6 @@ var savedCombosEl = $('#savedCombos');
 var arrCombos = JSON.parse(localStorage.getItem('arrCombos')) || [];
 var saveComboBtn = $('#save-combo');
 saveComboBtn.on('click', saveCombo);
-console.log(arrCombos);
 loadCombo();
 
 function loadCombo(){
@@ -363,7 +369,6 @@ function setCombo(cmb){
     var txt = cmbObj.textQuote;
     var index;
 
-    console.log(cmb.value);
     if (cntrlIsPressed){
         for (i=0; i<arrCombos.length; i++){
                 if (arrCombos[i].imgSrc == img && arrCombos[i].textQuote == txt) {
