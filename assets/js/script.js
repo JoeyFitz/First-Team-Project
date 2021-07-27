@@ -122,6 +122,9 @@ function setImage(img){
     var imgId = img.id;
     if (imgId == 'imageCard'){
         imgUrl = img.value;
+    } else if (imgId == 'comboCard'){
+        imgUrl = JSON.parse(img.value)
+        imgUrl = imgUrl.imgSrc;
     } else {
         imgUrl = img;
     }
@@ -227,6 +230,10 @@ function setQuote(qt){
     var qtId = qt.id;
     if (qtId == 'quoteCard'){
         qtText = qt.value;
+    } else if (qtId == "comboCard"){
+        qtText = JSON.parse(qt.value)
+        console.log(qtText);
+        qtText = qtText.textQuote;
     } else {
         qtText = qt;
     }
@@ -284,6 +291,7 @@ function saveQuote(){
 }
 
 ////////////////////////
+//<!-- <div class="lg:w-1/3 sm:w-1/2 p-4">
 //<div class="flex relative">
 //     <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center"
 //       src="https://dummyimage.com/600x360">
@@ -305,6 +313,11 @@ loadCombo();
 function loadCombo(){
     savedCombosEl.empty();
     for (i=0;i < arrCombos.length; i++){
+        var cardEl = $("<button>");
+        cardEl.attr("id", "comboCard");
+        cardEl.attr("onclick", 'setCombo(this)');
+        cardEl.attr("value", JSON.stringify(arrCombos[i]));
+        cardEl.addClass('lg:w-1/3 sm:w-1/2 p-4');
         var mainEl = $("<div>");
         mainEl.addClass("flex relative");
         var picEl = $("<img>");
@@ -315,7 +328,7 @@ function loadCombo(){
             hoverEl.addClass("px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100");
         var authEl = $("<h1>");
             authEl.addClass("title-font text-lg font-medium text-white mb-3");
-        var authorSplit = arrCombos[i].qtText.split(" - ");
+        var authorSplit = arrCombos[i].textQuote.split(" - ");
             authEl.text(authorSplit[1]);
         var quoteEl = $("<p>");
             quoteEl.addClass("leading-relaxed");
@@ -325,7 +338,8 @@ function loadCombo(){
         hoverEl.append(quoteEl);
         mainEl.append(picEl);
         mainEl.append(hoverEl)
-        savedCombosEl.append(mainEl);
+        cardEl.append(mainEl);
+        savedCombosEl.append(cardEl);
     }
 }
 
@@ -333,12 +347,17 @@ function saveCombo(){
     var imgSource = imageEl.attr("src");
     var quoteTxt = quoteTextEl.text();
     if (imgSource && quoteTxt){
-        var comboObj = {imgSrc: imgSource, qtText:quoteTxt}
+        var comboObj = {imgSrc: imgSource, textQuote:quoteTxt}
         arrCombos.push(comboObj);
     }
 
     localStorage.setItem('arrCombos',JSON.stringify(arrCombos));
     loadCombo();
+}
+
+function setCombo(cmb){
+    setImage(cmb);
+    setQuote(cmb);
 }
 
 
