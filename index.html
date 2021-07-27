@@ -32,6 +32,9 @@
           <button
             class="mx-5 w-3/12 text-white text-4xl bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg"
             id="save-quote">Save Quote</button>
+          <button
+            class="mx-5 w-3/12 text-white text-4xl bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg"
+            id="save-combo">Save Combo</button>
         </div>
       </div>
     </div>
@@ -45,32 +48,28 @@
         <div class="grid grid-cols-2">
           <input id="date-search" type="date" placeholder="YYYY-MM-DD">
           <button id="submit-nasa"
-            class="mx-5 justify-center text-white bg-purple-500 border-0 py-2 px-6 rounded-full w-10/12 text-2xl focus:outline-none hover:bg-purple-600 rounded text-lg">Get
-            NASA Pic
+            class="mx-5 justify-center text-white bg-purple-500 border-0 py-2 px-6 rounded-full w-10/12 text-2xl focus:outline-none hover:bg-purple-600 rounded text-lg">NASA Pic
           </button>
         </div>
         <span class="text-center">--OR--</span>
         <button id="submit-meme"
-          class="mx-5 text-white bg-purple-500 border-0 align-center py-2 px-6 mb-2 rounded-full text-2xl w-11/12 focus:outline-none hover:bg-purple-600 rounded text-lg">Get
-          Meme Pic
+          class="mx-5 text-white bg-purple-500 border-0 align-center py-2 px-6 mb-2 rounded-full text-2xl w-11/12 focus:outline-none hover:bg-purple-600 rounded text-lg">Meme Pic
         </button>
       </div>
       <!-- div for text buttons collumn -->
       <div class="grid grid-cols-1 grid-rows-5 border-r-8 border-solid justify-center border-gray-900">
         <h2 class="text-center row-span-1 text-4xl text-white underline">Select a Quote</h2>
         <button id="submit-inspQuote"
-          class="mx-5 text-white text-4xl content-center bg-purple-500 border-0 row-start-2 my-5 py-5 row-span-2 rounded-full w-11/12 focus:outline-none hover:bg-purple-600 roundeWd text-lg">Get
-          Inspirational Quote
+          class="mx-5 text-white text-4xl content-center bg-purple-500 border-0 row-start-2 my-5 py-5 row-span-2 rounded-full w-11/12 focus:outline-none hover:bg-purple-600 roundeWd text-lg">Inspirational Quote
         </button>
        <button id="submit-officeQuote"
-        class="mx-5 text-white text-4xl bg-purple-500 border-0 row-start-4 row-span-2 my-5 py-5 rounded-full w-11/12 focus:outline-none hover:bg-purple-600 rounded text-lg">Get
-        Office Quote
+        class="mx-5 text-white text-4xl bg-purple-500 border-0 row-start-4 row-span-2 my-5 py-5 rounded-full w-11/12 focus:outline-none hover:bg-purple-600 rounded text-lg">Office Quote
       </button>
     
       </div> 
       <!-- div for random buttons collumn -->
       <div class="grid grid-cols-1 grid-rows-5">
-        <h2 class="text-center text-4xl text-white underline">Roll the Dice?</h2>
+        <h2 class="text-center text-4xl text-white underline">Need Inspiration?</h2>
         <button id="take-a-hit"
         class="mx-5  text-white text-4xl  bg-red-700 border-0  row-start-3 row-span-2 rounded-full w-11/12 focus:outline-none hover:bg-red-900 rounded text-lg">Take A Hit!</button>
       </div>
@@ -95,87 +94,9 @@
   <section class="text-gray-400 bg-gray-900 body-font">
     <div class="container px-5 py-24 mx-auto">
       <div class="flex flex-col text-center w-full mb-20">
-        <h1 class="text-4xl font-medium title-font mb-4 text-white underline">Completed Memes</h1>
+        <h1 class="text-4xl font-medium title-font mb-4 text-white underline">Saved Memes</h1>
       </div>
-      <div class="flex flex-wrap -m-4">
-        <div class="lg:w-1/3 sm:w-1/2 p-4">
-          <div class="flex relative">
-            <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center"
-              src="https://dummyimage.com/600x360">
-            <div
-              class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
-              <h2 class="tracking-widest text-sm title-font font-medium text-purple-400 mb-1">THE SUBTITLE</h2>
-              <h1 class="title-font text-lg font-medium text-white mb-3">Shooting Stars</h1>
-              <p class="leading-relaxed">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing
-                tousled waistcoat.</p>
-            </div>
-          </div>
-        </div>
-        <div class="lg:w-1/3 sm:w-1/2 p-4">
-          <div class="flex relative">
-            <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center"
-              src="https://dummyimage.com/601x361">
-            <div
-              class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
-              <h2 class="tracking-widest text-sm title-font font-medium text-purple-400 mb-1">THE SUBTITLE</h2>
-              <h1 class="title-font text-lg font-medium text-white mb-3">The Catalyzer</h1>
-              <p class="leading-relaxed">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing
-                tousled waistcoat.</p>
-            </div>
-          </div>
-        </div>
-        <div class="lg:w-1/3 sm:w-1/2 p-4">
-          <div class="flex relative">
-            <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center"
-              src="https://dummyimage.com/603x363">
-            <div
-              class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
-              <h2 class="tracking-widest text-sm title-font font-medium text-purple-400 mb-1">THE SUBTITLE</h2>
-              <h1 class="title-font text-lg font-medium text-white mb-3">The 400 Blows</h1>
-              <p class="leading-relaxed">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing
-                tousled waistcoat.</p>
-            </div>
-          </div>
-        </div>
-        <div class="lg:w-1/3 sm:w-1/2 p-4">
-          <div class="flex relative">
-            <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center"
-              src="https://dummyimage.com/602x362">
-            <div
-              class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
-              <h2 class="tracking-widest text-sm title-font font-medium text-purple-400 mb-1">THE SUBTITLE</h2>
-              <h1 class="title-font text-lg font-medium text-white mb-3">Neptune</h1>
-              <p class="leading-relaxed">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing
-                tousled waistcoat.</p>
-            </div>
-          </div>
-        </div>
-        <div class="lg:w-1/3 sm:w-1/2 p-4">
-          <div class="flex relative">
-            <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center"
-              src="https://dummyimage.com/605x365">
-            <div
-              class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
-              <h2 class="tracking-widest text-sm title-font font-medium text-purple-400 mb-1">THE SUBTITLE</h2>
-              <h1 class="title-font text-lg font-medium text-white mb-3">Holden Caulfield</h1>
-              <p class="leading-relaxed">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing
-                tousled waistcoat.</p>
-            </div>
-          </div>
-        </div>
-        <div class="lg:w-1/3 sm:w-1/2 p-4">
-          <div class="flex relative">
-            <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center"
-              src="https://dummyimage.com/606x366">
-            <div
-              class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
-              <h2 class="tracking-widest text-sm title-font font-medium text-purple-400 mb-1">THE SUBTITLE</h2>
-              <h1 class="title-font text-lg font-medium text-white mb-3">Alper Kamu</h1>
-              <p class="leading-relaxed">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing
-                tousled waistcoat.</p>
-            </div>
-          </div>
-        </div>
+      <div id='savedCombos' class="flex flex-wrap -m-4">
       </div>
     </div>
   </section>
