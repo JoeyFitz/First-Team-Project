@@ -283,7 +283,63 @@ function saveQuote(){
     loadQuotes();
 }
 
+////////////////////////
+//<div class="flex relative">
+//     <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center"
+//       src="https://dummyimage.com/600x360">
+//     <div
+//       class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
+//       <h1 class="title-font text-lg font-medium text-white mb-3">Shooting Stars</h1>
+//       <p class="leading-relaxed">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing
+//         tousled waistcoat.</p>
+//     </div>
+//   </div>
+// </div>
+var savedCombosEl = $('#savedCombos');
+var arrCombos = JSON.parse(localStorage.getItem('arrCombos')) || [];
+var saveComboBtn = $('#save-combo');
+saveComboBtn.on('click', saveCombo);
+console.log(arrCombos);
+loadCombo();
 
+function loadCombo(){
+    savedCombosEl.empty();
+    for (i=0;i < arrCombos.length; i++){
+        var mainEl = $("<div>");
+        mainEl.addClass("flex relative");
+        var picEl = $("<img>");
+            picEl.attr("alt", "completed meme");
+            picEl.addClass('absolute inset-0 w-full h-full object-cover object-center');
+            picEl.attr("src",arrCombos[i].imgSrc);
+        var hoverEl = $("<div>");
+            hoverEl.addClass("px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100");
+        var authEl = $("<h1>");
+            authEl.addClass("title-font text-lg font-medium text-white mb-3");
+        var authorSplit = arrCombos[i].qtText.split(" - ");
+            authEl.text(authorSplit[1]);
+        var quoteEl = $("<p>");
+            quoteEl.addClass("leading-relaxed");
+            quoteEl.text(authorSplit[0]);
+
+        hoverEl.append(authEl);
+        hoverEl.append(quoteEl);
+        mainEl.append(picEl);
+        mainEl.append(hoverEl)
+        savedCombosEl.append(mainEl);
+    }
+}
+
+function saveCombo(){
+    var imgSource = imageEl.attr("src");
+    var quoteTxt = quoteTextEl.text();
+    if (imgSource && quoteTxt){
+        var comboObj = {imgSrc: imgSource, qtText:quoteTxt}
+        arrCombos.push(comboObj);
+    }
+
+    localStorage.setItem('arrCombos',JSON.stringify(arrCombos));
+    loadCombo();
+}
 
 
 
