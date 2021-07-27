@@ -346,7 +346,15 @@ function loadCombo(){
 function saveCombo(){
     var imgSource = imageEl.attr("src");
     var quoteTxt = quoteTextEl.text();
-    if (imgSource && quoteTxt){
+    var exists = false;
+
+    for (i=0; i < arrCombos.length; i ++) {
+        if (arrCombos[i].imgSrc == imgSource && arrCombos[i].textQuote == quoteTxt){
+            exists = true;
+        }
+    }
+    
+    if (imgSource && quoteTxt && !exists){
         var comboObj = {imgSrc: imgSource, textQuote:quoteTxt}
         arrCombos.push(comboObj);
     }
