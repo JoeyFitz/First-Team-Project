@@ -57,23 +57,16 @@ submitHitBtn.on('click', getHit);
 saveImageBtn.on('click', saveImage);
 saveQuoteBtn.on('click', saveQuote);
 
-savedImagesEl.on('click',function(event) {
-    var clickedImage = event;
-    var clickedUrl ; //= clickedImage.attr('value');
-
-    console.log('ClickedUrl: ' + JSON.stringify(clickedImage));
-});
-
 //Creates random image/quote combo
 function getHit(){
-    var imagerndm=Math.floor(Math.random() * 2);
-    var quoterndm=Math.floor(Math.random() * 2);
-    if(imagerndm == 1){
+    var imageRndm=Math.floor(Math.random() * 2);
+    var quoteRndm=Math.floor(Math.random() * 2);
+    if(imageRndm == 1){
         getMemeImage();
     } else {
         getNasaImage(null, setRandomDate(6000));
     }
-    if(quoterndm == 1){
+    if(quoteRndm == 1){
         getOfficeQuote();
     } else {
         getInspQuote();
@@ -94,9 +87,9 @@ function setRandomDate(numDay){
 //////////////////////////////////////////////////////////////////////
 ////////////////////// IMAGE FUNCTIONs////////////////////////////////
 //Get Nasa Image from APOD API call
-function getNasaImage(event, randomDate){
-    imageUrl = nasaApiUrl + (randomDate ? randomDate : dateInputEl[0].value);
-    fetch(imageUrl)
+function getNasaImage(randomDate){
+    imageApiUrl = nasaApiUrl + (randomDate ? randomDate : dateInputEl[0].value);
+    fetch(imageApiUrl)
     .then(res => res.json())
         .then(data =>{
             imageUrl = data.url;
@@ -131,23 +124,21 @@ function setImage(img){
     }
 
     //Handle ControlKey
-    console.log(cntrlIsPressed);
     if (cntrlIsPressed && !comboCard){
         var index = arrSavedImages.indexOf(imgUrl);
         if (index > -1) {
             arrSavedImages.splice(index, 1);
             localStorage.setItem('arrImages', JSON.stringify(arrSavedImages));
+            imgUrl = imageEl.attr('src');
             loadImages();
             }
         }
         else {
             // handle if the APOD is a youtube video
             if (imgUrl.includes('youtube')) {
-                
                 videoFrameEl.attr('src', imgUrl)
                 videoFrameEl.removeClass('hidden');
                 imageEl.addClass('hidden');
-                
             } else {
                 imageEl.attr('src', imgUrl);
                 videoFrameEl.addClass('hidden');
@@ -164,14 +155,12 @@ function loadImages(){
         var imageCard = $("<button>");
             imageCard.attr('id','imageCard');
             imageCard.attr("value", arrSavedImages[i]);
-            
             imageCard.attr("onclick", 'setImage(this)');
         
        // make image thumbnail
        var index = arrSavedImages[i].includes("youtube");
        var imageThumb = $("<img>");
        if (index) {
-           console.log("imageUrl: " + arrSavedImages[i]);
             imageThumb.attr('src', "./assets/images/youtube.png");
        }else {
             imageThumb.attr('src', arrSavedImages[i]);
@@ -241,11 +230,11 @@ function setQuote(qt){
     }
 
     //Handle ControlKey
-    if (cntrlIsPressed&& !comboCard){
-        var index = arrSavedQuotes.indexOf(qtText);
-        console.log(qtText);    
+    if (cntrlIsPressed && !comboCard){
+        var index = arrSavedQuotes.indexOf(qtText);  
         if (index > -1) {
             arrSavedQuotes.splice(index, 1);
+            quoteStr = quoteTextEl.text();
             localStorage.setItem('arrQuotes', JSON.stringify(arrSavedQuotes));
             loadQuotes();
         }
@@ -368,6 +357,26 @@ function saveCombo(){
 function setCombo(cmb){
     setImage(cmb);
     setQuote(cmb);
+
+    var cmbObj = JSON.parse(cmb.value);
+    var img = cmbObj.imgSrc;
+    var txt = cmbObj.textQuote;
+    var index;
+
+    console.log(cmb.value);
+    if (cntrlIsPressed){
+        for (i=0; i<arrCombos.length; i++){
+                if (arrCombos[i].imgSrc == img && arrCombos[i].textQuote == txt) {
+                    index = i;
+                    break;
+                }
+        }
+        arrCombos.splice(index, 1);
+        localStorage.setItem('arrCombos',JSON.stringify(arrCombos));
+        loadCombo();
+
+
+    }
 }
 
 
