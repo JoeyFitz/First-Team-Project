@@ -117,7 +117,7 @@ function getMemeImage(){
 
 //SetImage
 function setImage(img){
-    
+    var comboCard = false;
     //Make sure a saved card is clicked and then update imgUrl
     var imgId = img.id;
     if (imgId == 'imageCard'){
@@ -125,34 +125,35 @@ function setImage(img){
     } else if (imgId == 'comboCard'){
         imgUrl = JSON.parse(img.value)
         imgUrl = imgUrl.imgSrc;
+        comboCard = true;
     } else {
         imgUrl = img;
     }
 
     //Handle ControlKey
     console.log(cntrlIsPressed);
-    if (cntrlIsPressed){
+    if (cntrlIsPressed && !comboCard){
         var index = arrSavedImages.indexOf(imgUrl);
         if (index > -1) {
             arrSavedImages.splice(index, 1);
             localStorage.setItem('arrImages', JSON.stringify(arrSavedImages));
             loadImages();
+            }
         }
-    }
-    else{
-        // handle if the APOD is a youtube video
-        if (imgUrl.includes('youtube')) {
-            
-            videoFrameEl.attr('src', imgUrl)
-            videoFrameEl.removeClass('hidden');
-            imageEl.addClass('hidden');
-            
-        } else {
-            imageEl.attr('src', imgUrl);
-            videoFrameEl.addClass('hidden');
-            imageEl.removeClass('hidden');
+        else {
+            // handle if the APOD is a youtube video
+            if (imgUrl.includes('youtube')) {
+                
+                videoFrameEl.attr('src', imgUrl)
+                videoFrameEl.removeClass('hidden');
+                imageEl.addClass('hidden');
+                
+            } else {
+                imageEl.attr('src', imgUrl);
+                videoFrameEl.addClass('hidden');
+                imageEl.removeClass('hidden');
+            }
         }
-    }
 
 }
 //Load Images from local storage array
@@ -225,7 +226,7 @@ function getInspQuote(){
 
 //Simple Set quote so that the saved cards can use them too
 function setQuote(qt){
-        
+    var comboCard = false;
     //Make sure a saved card is clicked and then update qtText
     var qtId = qt.id;
     if (qtId == 'quoteCard'){
@@ -234,12 +235,13 @@ function setQuote(qt){
         qtText = JSON.parse(qt.value)
         console.log(qtText);
         qtText = qtText.textQuote;
+        comboCard =true;
     } else {
         qtText = qt;
     }
 
     //Handle ControlKey
-    if (cntrlIsPressed){
+    if (cntrlIsPressed&& !comboCard){
         var index = arrSavedQuotes.indexOf(qtText);
         console.log(qtText);    
         if (index > -1) {
@@ -353,7 +355,7 @@ function saveCombo(){
             exists = true;
         }
     }
-    
+
     if (imgSource && quoteTxt && !exists){
         var comboObj = {imgSrc: imgSource, textQuote:quoteTxt}
         arrCombos.push(comboObj);
