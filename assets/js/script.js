@@ -59,10 +59,14 @@ submitHitBtn.on('click', getHit);
 saveImageBtn.on('click', saveImage);
 saveQuoteBtn.on('click', saveQuote);
 
+var arrBtnNames = ['Take a hit','Jesus take the wheel','Roll the dice','Dudditz!','Skin that cat','Get Some', 'Leave the reservation', 'DO NOT PRESS', 'Self Destruct']
+
 //Creates random image/quote combo
 function getHit(){
     var imageRndm=Math.floor(Math.random() * 2);
     var quoteRndm=Math.floor(Math.random() * 2);
+    var btnRndm =Math.floor(Math.random() * arrBtnNames.length);
+    submitHitBtn.text(arrBtnNames[btnRndm]);
     if(imageRndm == 1){
         getMemeImage();
     } else {
@@ -289,18 +293,6 @@ function saveQuote(){
 }
 
 ////////////////////////
-//<!-- <div class="lg:w-1/3 sm:w-1/2 p-4">
-//<div class="flex relative">
-//     <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center"
-//       src="https://dummyimage.com/600x360">
-//     <div
-//       class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
-//       <h1 class="title-font text-lg font-medium text-white mb-3">Shooting Stars</h1>
-//       <p class="leading-relaxed">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing
-//         tousled waistcoat.</p>
-//     </div>
-//   </div>
-// </div>
 var savedCombosEl = $('#savedCombos');
 var arrCombos = JSON.parse(localStorage.getItem('arrCombos')) || [];
 var saveComboBtn = $('#save-combo');
