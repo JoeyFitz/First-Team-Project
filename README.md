@@ -7,16 +7,18 @@ To install this code, download the zip file, or use GitHub's guidelines to clone
 
 ## Usage
 Visit URL of the deployed application --> https://joeyfitz.github.io/Work-Day-Scheduler/index.html
+
 Follow the instructions displayed within the placeholder image to create and save content.
-<include screenshot of initial application load>
-<include screenshot of saved images and quotes>
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
+
+![Screen Shot 2021-07-27 at 6 07 22 PM](https://user-images.githubusercontent.com/50683782/127247353-0ede2447-00a0-4be4-90cc-17a7173e4a53.png)
+
+![Screen Shot 2021-07-27 at 6 11 14 PM](https://user-images.githubusercontent.com/50683782/127247605-e72bc53e-39f6-4cee-8d9e-7ef80fb90602.png)
+    
 ## Credits
-Luke Cole - https://github.com/lukeajcole
 Ashkon Abazary - https://github.com/aabazary
+
+Luke Cole - https://github.com/lukeajcole
+
 Aniesia Schmolesky - https://github.com/Aniesia-Schmolesky
     
 APIs Accessible within the Application:
