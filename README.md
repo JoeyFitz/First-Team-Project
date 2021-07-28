@@ -6,7 +6,7 @@ This repo contains the source code for a web-based application that can create a
 To install this code, download the zip file, or use GitHub's guidelines to clone the repository.
 
 ## Usage
-Visit URL of the deployed application --> https://joeyfitz.github.io/Work-Day-Scheduler/index.html
+Visit URL of the deployed application --> https://joeyfitz.github.io/First-Team-Project/
 
 Follow the instructions displayed within the placeholder image to create and save content.
 
